@@ -7,8 +7,8 @@ connect();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use('/post',[postrouter]); 
-app.use('/comment',[commtrouter]);
+app.use('/posts',[postrouter]); 
+app.use('/comments',[commtrouter]);
 
 app.listen(3000, () => {
     console.log('서버가 3000포트로 열렸습니다.')
