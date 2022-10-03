@@ -13,12 +13,11 @@ router.get("/", async (req, res) =>{ //GET 방식으로
     const post = borderList.map((post) => {
         title = post.title,
         user = post.user,
-        content = post.content,
         createdAt = post.createdAt,
         postId = post._id
-        return{"title":title, "user":user, "content":content,"createdAt":createdAt, "postId":postId};
+        return{"title":title, "user":user, "createdAt":createdAt, "postId":postId};
     })
-    res.json({ borderlist : borderList }) // borderList라는 값은 borderlist 로 보내준다.
+    res.json({ borderlist : post }) // borderList라는 값은 borderlist 로 보내준다.
     })
 
 router.get("/:postId", async (req,res)=>{  //
