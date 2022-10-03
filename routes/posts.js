@@ -10,6 +10,13 @@ router.post("/", async (req, res) =>{     //포스트방식
 
 router.get("/", async (req, res) =>{ //GET 방식으로
     const borderList = await Posts.find({}).sort("-createdAt"); // borderlist(변수)의 전체 전체 post list를 찾아주는데 내림차순으로 정렬해준다.
+    const post = borderList.map((post) => {
+        title = post.title,
+        user = post.user,
+        date = post.created,
+        postId = post._id
+        return{"title":title, "user":user, "content":content,"date":date, "postid":postid};
+    })
     res.json({ borderlist : borderList }) // borderList라는 값은 borderlist 로 보내준다.
     })
 
