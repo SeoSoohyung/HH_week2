@@ -16,7 +16,14 @@ router.post("/:postId", async (req,res) => { //작성
 router.get("/:postId", async (req, res) => { //조회
     const {postId} = req.params; //특정 게시물을 가진 postId 를 넘겨주기 위해서 생성.
     const commtList = await Commt.find({postId}).sort("-createdAt"); // find({postId}) => 게시글이 갖고있는 postId
-    res.json({ commtlist : commtList});
+    const comt = commtList.map((comt)=>{
+        commentId = comt._id,
+        user = comt.user,
+        content = comt.content,
+        createdAt = comt.createdAt
+        return {"commentId":commentId, "user":user, "content":content, "createdAt":createdAt}
+    })
+    res.json({ commtlist : comt});
 });
 
 router.put("/:commentId", async (req,res) => {
