@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const connect = () => {
     mongoose
-    .connect("mongodb://admin:1234@3.34.127.89:27017/admin",
+    .connect("mongodb://admin:1234@3.34.127.89:27017/admin?authSource=admin",
     {
         useUnifiedTopology: true,
         useNewUrlParser: true,
