@@ -23,7 +23,15 @@ router.get("/", async (req, res) =>{ //GET 방식으로
 router.get("/:postId", async (req,res)=>{  //
     const {postId} = req.params; // {postId} 를 풀어쓰면 { postId : postId }  const { postId } = req.params // const postId = req.params.postId
     const border = await Posts.findOne({_id:postId}) //border(변수) postId값이 일치하는 doc 하나를  갖고온다
-    res.json({detail : border}); // detail 는 border를 담아서 json으로 넘겨준다. 
+    const post = border.map((post) => {
+        title = post.title,
+        postid = post._id,
+        user = post.user,
+        content = post.content,
+        createdAt = post.createdAt
+        return{"title":title, "postId":postid, "user":user, "content":content, "createdAt":createdAt};
+    })
+    res.json({detail : post}); // detail 는 border를 담아서 json으로 넘겨준다. 
 });
 
 router.put("/:postId", async (req,res) => {
