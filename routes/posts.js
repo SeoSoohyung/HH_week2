@@ -21,7 +21,11 @@ router.get("/", async (req, res) =>{ //GET 방식으로
     })
 
 router.get("/:postId", async (req,res)=>{  //
-    const {postId} = req.params; // {postId} 를 풀어쓰면 { postId : postId }  const { postId } = req.params // const postId = req.params.postId
+    const {postId} = req.params;// {postId} 를 풀어쓰면 { postId : postId }  const { postId } = req.params // const postId = req.params.postId
+    const {user} = req.params;
+    const {title} = req.params;
+    const {content} = req.params;
+    const {createdAt} = req.params; 
     const border = await Posts.findOne({_id:postId}) //border(변수) postId값이 일치하는 doc 하나를  갖고온다
     const post = border.map((post) => {
         title = post.title,
