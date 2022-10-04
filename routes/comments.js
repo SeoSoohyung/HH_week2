@@ -5,11 +5,11 @@ const Commt = require("../schemas/comment")
 router.post("/:postId", async (req,res) => { //작성
     const {postId} = req.params;
     const { user, password, content} = req.body;
-    const createcommt = await Commt.create({ postId ,user, password, content });
     if (content === ""){
         res.json({"message":"댓글 내용을 입력해주세요"});
     } else {
-        res.json({"message" : "댓글을 생성하였습니다."});
+        const createcommt = await Commt.create({ postId ,user, password, content },
+        res.json({"message":"댓글이 생성되었습니다."}));
     }
 });
 

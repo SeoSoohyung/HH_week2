@@ -6,7 +6,7 @@ router.post("/", async (req, res) =>{     //포스트방식
     const { user, password, title, content } = req.body; // user, password, title, contetn 는 body로 요청으로 넘어온것.
     const createdposts = await Posts.create({ user, password, title, content}); // 입력한 user, password, title, content가 몽고DB에 저장되는것.
     res.json({"message" : "게시글을 생성하였습니다."}) // 성공하면 이 메세지 전달.
-})
+    });
 
 router.get("/", async (req, res) =>{ //GET 방식으로
     const borderList = await Posts.find({}).sort("-createdAt"); // borderlist(변수)의 전체 전체 post list를 찾아주는데 내림차순으로 정렬해준다.
@@ -16,11 +16,11 @@ router.get("/", async (req, res) =>{ //GET 방식으로
         createdAt = post.createdAt,
         postId = post._id
         return{"title":title, "user":user, "createdAt":createdAt, "postId":postId};
-    })
+    });
     res.json({ borderlist : post }) // borderList라는 값은 borderlist 로 보내준다.
-    })
+    });
 
-router.get("/:postId", async (req,res)=>{  //
+router.get("/:postId", async (req,res)=>{  
     const {postId} = req.params;// {postId} 를 풀어쓰면 { postId : postId }  const { postId } = req.params // const postId = req.params.postId
     const border = await Posts.findOne({_id:postId}) //border(변수) postId값이 일치하는 doc 하나를  갖고온다
     const {user, title, content,createdAt} = border //필요한 것들만 다시 담아와서
@@ -32,7 +32,7 @@ router.get("/:postId", async (req,res)=>{  //
         createdAt
     }
     res.json({detail : post}); // detail 는 border를 담아서 json으로 넘겨준다. 
-});
+    });
 
 router.put("/:postId", async (req,res) => {
     const {postId} = req.params; 
@@ -44,7 +44,7 @@ router.put("/:postId", async (req,res) => {
     } else {
         res.send({result: "다시 입력하거라"})  // 아니면 실패메시지.
     }
-});
+    });
 
 router.delete("/:postId", async (req, res) => { 
     const {postId} = req.params; 
@@ -56,6 +56,6 @@ router.delete("/:postId", async (req, res) => {
     } else {
         res.send({result:"다시 입력해보거라"}); // 아니면 실패메시지.
     }
-})
+    });
 
 module.exports = router;
