@@ -1,10 +1,10 @@
-const express = require("express");
-const router = express.Router();
+const express = require("express"); // express에서 제공되는 Router 함수를 사용해 Router 생성 **
+const router = express.Router(); //Router 생성 **
 const Posts = require("../schemas/post")
 
 router.post("/", async (req, res) =>{     //포스트방식 
     const { user, password, title, content } = req.body; // user, password, title, contetn 는 body로 요청으로 넘어온것.
-    const createdposts = await Posts.create({ user, password, title, content}); // 입력한 user, password, title, content가 몽고DB에 저장되는것.
+    const createdposts = await Posts.create({ user, password, title, content}); // 입력한 user, password, title, content가 몽고DB에 저장되는것.      
     res.json({"message" : "게시글을 생성하였습니다."}) // 성공하면 이 메세지 전달.
     });
 
@@ -24,7 +24,7 @@ router.get("/:postId", async (req,res)=>{
     const {postId} = req.params;// {postId} 를 풀어쓰면 { postId : postId }  const { postId } = req.params // const postId = req.params.postId
     const border = await Posts.findOne({_id:postId}) //border(변수) postId값이 일치하는 doc 하나를  갖고온다
     const {user, title, content,createdAt} = border //필요한 것들만 다시 담아와서
-    const post = {           //(findOne 은 배열이 아니라 객체였기때문에 map을 못쓰고), post 로 담아준것.
+    const post = {           //findOne 은 배열이 아니라 객체였기때문에 map을 못쓰고), post 로 담아준것.
         postId,
         user,
         title,
@@ -58,4 +58,5 @@ router.delete("/:postId", async (req, res) => {
     }
     });
 
-module.exports = router;
+module.exports = router; //Router 을 app.js에서 사용하기 위해 내보내주는 코드 **
+

@@ -1,4 +1,4 @@
-const express = require("express");
+const express = require("express"); //**
 const router = express.Router();
 const Commt = require("../schemas/comment")
 
@@ -8,8 +8,8 @@ router.post("/:postId", async (req,res) => { //작성
     if (content === ""){
         res.json({"message":"댓글 내용을 입력해주세요"});
     } else {
-        const createcommt = await Commt.create({ postId ,user, password, content },
-        res.json({"message":"댓글이 생성되었습니다."}));
+        const createcommt = await Commt.create({ postId ,user, password, content })
+        res.json({"message":"댓글이 생성되었습니다."});
     }
 });
 
