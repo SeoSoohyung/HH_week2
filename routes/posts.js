@@ -1,5 +1,5 @@
-const express = require("express"); // express에서 제공되는 Router 함수를 사용해 Router 생성 **
-const router = express.Router(); //Router 생성 **
+const express = require("express"); 
+const router = express.Router(); 
 const middleware = require("../middlewares/auth-middleware");
 const { Op } = require("sequelize");
 const { Posts, sequelize } = require("../models");
@@ -12,7 +12,7 @@ router.post("/", middleware, async (req, res) =>{
     const nickname = res.locals.user.nickname;
     const createdposts = await Posts.create({ nickname, userId, title, content, likes:0});      
     res.json({"message" : "게시글 작성에 성공하였습니다."})
-    });
+});
 
 router.get("/", async (req, res) =>{
     const borderList = await Posts.findAll({
@@ -20,7 +20,7 @@ router.get("/", async (req, res) =>{
     });
     borderList.sort((a,b) => b.createdAt - a.createdAt)
     res.json({ borderlist : borderList })
-    });
+});
 
 router.get("/like", middleware, async(req,res)=>{
     const userId = res.locals.user.userId;
@@ -47,7 +47,7 @@ router.get("/:postId", async (req,res)=>{
     const {postId} = req.params;
     const objBorder = await Posts.findOne({where:{postId}})
     res.json({detail : objBorder});
-    });
+});
 
 router.put("/:postId", middleware,async (req,res) => {
     const {postId} = req.params; 
@@ -60,7 +60,7 @@ router.put("/:postId", middleware,async (req,res) => {
     } else {
         res.json({"message":"게시글 작성자가 아닙니다."})
     }
-    });
+});
 
 router.delete("/:postId",middleware, async (req, res) => { 
     const {postId} = req.params; 
@@ -72,7 +72,7 @@ router.delete("/:postId",middleware, async (req, res) => {
     } else {
         res.json({"message":"게시글 작성자가 아닙니다."})
     }
-    });
+});
 
 
 router.put("/:postId/like", middleware, async (req,res)=>{

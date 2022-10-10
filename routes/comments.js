@@ -50,8 +50,7 @@ router.delete("/:commentId",middleware, async (req, res) => {
     }
   } else {
     res.status(401).json({"message":"삭제할 댓글이 없습니다"})
-  }
-  
+  }  
 });
 
 module.exports = router;
