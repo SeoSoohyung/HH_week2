@@ -20,11 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     postId: DataTypes.INTEGER, 
     userId: DataTypes.INTEGER, 
-    
-    
-  
-
-  }, {
+    }, 
+    {
     sequelize,
     modelName: 'Likes',
   });
