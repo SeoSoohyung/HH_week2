@@ -17,7 +17,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.6.5",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.24.0"
+    "sequelize": "^6.24.0",
+    "swagger-autogen": "^2.22.0"
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,8 @@
   "homepage": "https://github.com/SeoSoohyung/Hanghae_prac#readme",
   "description": "",
   "devDependencies": {
-    "sequelize-cli": "^6.5.1"
+    "sequelize-cli": "^6.5.1",
+    "swagger-jsdoc": "^6.2.5",
+    "swagger-ui-express": "^4.5.0"
   }
 }

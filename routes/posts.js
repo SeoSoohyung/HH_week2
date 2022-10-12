@@ -5,7 +5,26 @@ const { Op } = require("sequelize");
 const { Posts, sequelize } = require("../models");
 const { Likes } = require("../models");
 
-
+/**
+ * @swagger
+ *  /posts:
+ *    post:
+ *      tags:
+ *      - post
+ *      description: 게시판 작성
+ *      produces:
+ *      - application/json
+ *      requestBody:
+ *        - in: body
+ *          title: category
+ *          required: false
+ *          schema:
+ *            type: integer
+ *            description: Created
+ *      responses:
+ *       200:
+ *        description: 게시물 작성 성공
+ */
 router.post("/", middleware, async (req, res) =>{
     const { title, content } = req.body;
     const userId = res.locals.user.userId;
